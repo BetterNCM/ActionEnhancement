@@ -53,12 +53,14 @@ window.addEventListener('paste', function (event) {
         setTimeout(() => {
             jsInput.value = lastInputValue
             jsInput.style.color = ''
-            for (const history of [...document.querySelectorAll("#panel_pc_search_start > div.side.history .hotlst > *")]) {
-                if (history.innerText.trim() === id) {
-                    history.querySelector('.cl.j-item').click()
-                    break;
+            setTimeout(() => {
+                for (const history of [...document.querySelectorAll("#panel_pc_search_start > div.side.history .hotlst > *")]) {
+                    if (history.innerText.trim() === id) {
+                        history.querySelector('.cl.j-item').click()
+                        break;
+                    }
                 }
-            }
+            }, 200)
         }, 10)
     }
 });
