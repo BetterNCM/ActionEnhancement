@@ -61,8 +61,8 @@ function simulateInput(element, val) {
 
 window.addEventListener('paste', function (event) {
     const data = (event.clipboardData || event.originalEvent.clipboardData)
-    const regexGetNCMId = /music\.163\.com\/song\?id=(\d+)/
-    const id = regexGetNCMId.exec(data.getData('text'))?.[1]
+    const regexGetNCMId = /music\.163\.com(\/#)?\/song\?id=(\d+)/
+    const id = regexGetNCMId.exec(data.getData('text'))?.[2]
 
     if (id && id.length >= 5) {
         const jsInput = document.querySelector('.j-search-input, .searchbox .cmd-input')
