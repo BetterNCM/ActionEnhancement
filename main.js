@@ -89,9 +89,13 @@ window.addEventListener('paste', function (event) {
 });
 
 setInterval(_ => {
-    document.querySelector(".j-vol, .cmd-icon-volume").onmousewheel = (e => {
-        const currentVolume = parseInt(document.querySelector(".prg-spk.j-vol.f-dn .has")?.style.height ?? /(\d+)%/.exec(document.querySelector("[class^=VolumnSlider_]").getAttribute('style'))[1]) / 100;
-        if (e.deltaY > 0) channel.call("audioplayer.setVolume", () => { }, ["", "", currentVolume - 0.1])
-        else channel.call("audioplayer.setVolume", () => { }, ["", "", Math.min(currentVolume + 0.1, 1)])
-    })
+    document
+        .querySelectorAll(".j-vol, .cmd-icon-volume")
+        .forEach(x =>
+            x.onmousewheel = (e => {
+                const currentVolume = parseInt(document.querySelector(".prg-spk.j-vol.f-dn .has")?.style.height ?? /(\d+)%/.exec(document.querySelector("[class^=VolumnSlider_]").getAttribute('style'))[1]) / 100;
+                if (e.deltaY > 0) channel.call("audioplayer.setVolume", () => { }, ["", "", currentVolume - 0.1])
+                else channel.call("audioplayer.setVolume", () => { }, ["", "", Math.min(currentVolume + 0.1, 1)])
+            })
+        )
 }, 600)
